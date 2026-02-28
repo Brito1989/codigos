@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activación Office - Raúl Brito</title>
+    <style>
+        /* --- ESTILOS GENERALES Y FONDO ANIMADO --- */
+        :root {
+            --primary-color: #ff6b6b; /* Un tono vibrante */
+            --secondary-color: #4ecdc4; /* Tono secundario */
+            --accent-color: #ffbe0b; /* Acento amarillo */
+            --text-color: #fff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow: hidden; /* Ocultar barras de desplazamiento para el fondo */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        /* Animación del fondo */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- ELEMENTOS DECORATIVOS FLOTANTES --- */
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animateCircles 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+
+        @keyframes animateCircles {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
+        }
+
+        /* --- CONTENEDOR PRINCIPAL (EFECTO VIDRIO) --- */
+        .glass-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 4rem 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- ESTILOS DE LA IMAGEN --- */
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--text-color);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img-container:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen llene el círculo */
+        }
+
+        /* --- ESTILOS DE TEXTO --- */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--text-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* --- BOTÓN DE DESCARGA CON ESTILOS AVANZADOS --- */
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Efecto de brillo al hover */
+        .btn-download::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .btn-download:hover::after {
+            opacity: 1;
+            left: 100%;
+            top: 100%;
+        }
+
+        .btn-download span {
+            font-size: 1.4rem; /* Icono más grande */
+        }
+
+        /* --- FOOTER (CRÉDITOS) --- */
+        footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <div class="glass-container">
+        
+        <div class="profile-img-container">
+            <img src="ts.jpeg" alt="Imagen de Raúl Brito">
+        </div>
+
+        <h1>Códigos de Activación</h1>
+        <p class="subtitle">
+            Página hecha por <strong>Raúl Brito</strong> para descargar los códigos para la activación del Office.
+        </p>
+        
+        <a href="codigos.txt" download="codigos_office_raul_brito.txt" class="btn-download" id="downloadBtn">
+            <span>⬇</span> Descargar codigos.txt
+        </a>
+
+        <footer>
+            © 2026 - Raúl Brito | El Inge en Sistemas
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            console.log("Iniciando descarga por usuario.");
+            
+            // Cambiar el texto del botón temporalmente
+            const originalText = this.innerHTML;
+            this.innerHTML = "<span>⏳</span> Preparando descarga...";
+            this.style.opacity = "0.8";
+
+            // Volver al texto original después de 2 segundos
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.opacity = "1";
+            }, 2500);
+        });
+    </script>
+
+</body>
+</html>
