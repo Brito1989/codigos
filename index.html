@@ -208,8 +208,8 @@
             Página hecha por <strong>Raúl Brito</strong> para descargar los códigos para la activación del Office.
         </p>
         
-        <a href="codigos.txt" download="office.pdf" class="btn-download" id="downloadBtn">
-            <span>⬇</span> Descargar codigos.txt
+        <a href="codigos.txt" target="_blank" class="btn-download" id="downloadBtn">
+            <span>👁️</span> Visualizar codigos.txt
         </a>
 
         <footer>
@@ -219,21 +219,21 @@
 
     <script>
         document.getElementById('downloadBtn').addEventListener('click', function() {
-            console.log("Iniciando descarga por usuario.");
+            console.log("Abriendo archivo en pestaña nueva.");
             
-            // Cambiar el texto del botón temporalmente
             const originalText = this.innerHTML;
-            this.innerHTML = "<span>⏳</span> Preparando descarga...";
+            this.innerHTML = "<span>⏳</span> Abriendo...";
             this.style.opacity = "0.8";
 
-            // Volver al texto original después de 2 segundos
             setTimeout(() => {
                 this.innerHTML = originalText;
                 this.style.opacity = "1";
             }, 2500);
         });
     </script>
-
+</body>
+</html>
 </body>
 
 </html>
+
